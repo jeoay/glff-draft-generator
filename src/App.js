@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <h1>2021 Gentleman's League of Fantasy Football</h1>
       </header>
-      <section className="main">
+      <section className="content">
         <DraftLottery />
       </section>
     </div>

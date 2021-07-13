@@ -1,95 +1,123 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrophy } from '@fortawesome/free-solid-svg-icons';
 import '../styles/global.css';
 import '../styles/draft-lottery.css';
 
 class DraftLottery extends Component {
-	lotteryTeams = [
-		{
-			name: 'Nick Routh',
-			position: 7,
-			selected: false,
-			lotteryPercentage: 0,
-		},
-		{
-			name: 'Ryan Silva',
-			position: 8,
-			selected: false,
-			lotteryPercentage: 0,
-		},
-		{
-			name: 'Max Clinch',
-			position: 9,
-			selected: false,
-			lotteryPercentage: 0,
-		},
-		{
-			name: 'Max Nelson',
-			position: 10,
-			selected: false,
-			lotteryPercentage: 0,
-		},
-		{
-			name: 'Joey Pellegrino',
-			position: 11,
-			selected: false,
-			lotteryPercentage: 0,
-		},
-		{
-			name: 'Bryce Hairabedian',
-			position: 12,
-			selected: false,
-			lotteryPercentage: 0,
-		},
+	title = 'Draft Lottery';
+	columnTitle = [
+		'2020 Final Results:',
+		'Second Col',
+		'Third Col',
+		'Fourth Col',
 	];
 
-	playoffTeams = [
+	allTeams = [
 		{
-			name: 'Nick Routh',
-			position: 7,
-			selected: false,
+			name: 'Jared Nelson',
+			standing: 1,
+			selected: true,
 			lotteryPercentage: 0,
 		},
 		{
-			name: 'Ryan Silva',
-			position: 8,
-			selected: false,
+			name: 'Akis Yerocostas',
+			standing: 2,
+			selected: true,
+			lotteryPercentage: 0,
+		},
+		{
+			name: 'Nick Routh',
+			standing: 3,
+			selected: true,
 			lotteryPercentage: 0,
 		},
 		{
 			name: 'Max Clinch',
-			position: 9,
+			standing: 4,
+			selected: true,
+			lotteryPercentage: 0,
+		},
+		{
+			name: 'Joel Andersen',
+			standing: 5,
+			selected: true,
+			lotteryPercentage: 0,
+		},
+		{
+			name: 'Ryan Silva',
+			standing: 6,
+			selected: true,
+			lotteryPercentage: 0,
+		},
+		{
+			name: 'Joey Pellegrino',
+			standing: 7,
 			selected: false,
 			lotteryPercentage: 0,
 		},
 		{
 			name: 'Max Nelson',
-			position: 10,
+			standing: 8,
 			selected: false,
 			lotteryPercentage: 0,
 		},
 		{
-			name: 'Joey Pellegrino',
-			position: 11,
+			name: 'Brian Galli',
+			standing: 9,
 			selected: false,
 			lotteryPercentage: 0,
 		},
 		{
 			name: 'Bryce Hairabedian',
-			position: 12,
+			standing: 10,
+			selected: false,
+			lotteryPercentage: 0,
+		},
+		{
+			name: 'Scotty Shaw',
+			standing: 11,
+			selected: false,
+			lotteryPercentage: 0,
+		},
+		{
+			name: 'Gianni Vernon',
+			standing: 12,
 			selected: false,
 			lotteryPercentage: 0,
 		},
 	];
 
 	render() {
+		const trophyIcon = (
+			<FontAwesomeIcon icon={faTrophy} className="gold-icon" />
+		);
+		const finalStandings = [];
+		this.allTeams.forEach((team) => {
+			finalStandings.push(
+				<li key={team.standing}>
+					{team.standing}. {team.name} {trophyIcon}
+				</li>
+			);
+		});
+
 		return (
 			<>
-				<h2>Draft Lottery</h2>
+				<h1 className="lottery-title">{this.title}</h1>
 				<div className="columns">
-					<div className="column">First column</div>
-					<div className="column">Second column</div>
-					<div className="column">Third column</div>
-					<div className="column">Fourth column</div>
+					<div className="column">
+						<h5>{this.columnTitle[0]}</h5>
+						<div className="standings">{finalStandings}</div>
+					</div>
+					<div className="column">
+						<h5>{this.columnTitle[1]}</h5>
+					</div>
+					<div className="column">
+						<h5>{this.columnTitle[2]}</h5>
+					</div>
+					<div className="column">
+						<h5>{this.columnTitle[3]}</h5>
+					</div>
 				</div>
 			</>
 		);
