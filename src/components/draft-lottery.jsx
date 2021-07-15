@@ -6,12 +6,7 @@ import '../styles/draft-lottery.css';
 
 class DraftLottery extends Component {
 	title = 'Draft Lottery';
-	columnTitle = [
-		'2020 Final Results:',
-		'Second Col',
-		'Third Col',
-		'Fourth Col',
-	];
+	columnTitle = ['2020 Final Results:', 'Next Pick:', '2021 Draft Order:'];
 
 	allTeams = [
 		{
@@ -54,56 +49,107 @@ class DraftLottery extends Component {
 			name: 'Joey Pellegrino',
 			standing: 7,
 			selected: false,
-			lotteryPercentage: 0,
+			lotteryPercentage: 35,
 		},
 		{
 			name: 'Max Nelson',
 			standing: 8,
 			selected: false,
-			lotteryPercentage: 0,
+			lotteryPercentage: 25,
 		},
 		{
 			name: 'Brian Galli',
 			standing: 9,
 			selected: false,
-			lotteryPercentage: 0,
+			lotteryPercentage: 17,
 		},
 		{
 			name: 'Bryce Hairabedian',
 			standing: 10,
 			selected: false,
-			lotteryPercentage: 0,
+			lotteryPercentage: 10,
 		},
 		{
 			name: 'Scotty Shaw',
 			standing: 11,
 			selected: false,
-			lotteryPercentage: 0,
+			lotteryPercentage: 8,
 		},
 		{
 			name: 'Gianni Vernon',
 			standing: 12,
 			selected: false,
-			lotteryPercentage: 0,
+			lotteryPercentage: 5,
 		},
 	];
 
+	startLottery() {
+		console.log('clicked');
+	}
+
 	render() {
-		const trophyIcon = (
+		const goldTrophyIcon = (
 			<FontAwesomeIcon icon={faTrophy} className="gold-icon" />
+		);
+		const silverTrophyIcon = (
+			<FontAwesomeIcon icon={faTrophy} className="silver-icon" />
+		);
+		const bronzeTrophyIcon = (
+			<FontAwesomeIcon icon={faTrophy} className="bronze-icon" />
 		);
 		const finalStandings = [];
 		this.allTeams.forEach((team) => {
-			finalStandings.push(
-				<li key={team.standing}>
-					{team.standing}. {team.name} {trophyIcon}
-				</li>
-			);
+			switch (team.standing) {
+				case 1:
+					finalStandings.push(
+						<li key={team.standing}>
+							{team.standing}. {team.name} {goldTrophyIcon}
+						</li>
+					);
+					break;
+				case 2:
+					finalStandings.push(
+						<li key={team.standing}>
+							{team.standing}. {team.name} {silverTrophyIcon}
+						</li>
+					);
+					break;
+				case 3:
+					finalStandings.push(
+						<li key={team.standing}>
+							{team.standing}. {team.name} {bronzeTrophyIcon}
+						</li>
+					);
+					break;
+				default:
+					if (team.lotteryPercentage === 0) {
+						finalStandings.push(
+							<li key={team.standing}>
+								{team.standing}. {team.name}
+							</li>
+						);
+					} else {
+						finalStandings.push(
+							<li key={team.standing}>
+								{team.standing}. {team.name}, {team.lotteryPercentage}%
+							</li>
+						);
+					}
+			}
 		});
 
 		return (
 			<>
-				<h1 className="lottery-title">{this.title}</h1>
+				<h1 className="lottery-title">
+					{this.title}
+					<br />
+					<button
+						className="button is-primary start-button"
+						onClick={this.startLottery}>
+						Start!
+					</button>
+				</h1>
+
 				<div className="columns">
 					<div className="column">
 						<h5>{this.columnTitle[0]}</h5>
@@ -114,9 +160,6 @@ class DraftLottery extends Component {
 					</div>
 					<div className="column">
 						<h5>{this.columnTitle[2]}</h5>
-					</div>
-					<div className="column">
-						<h5>{this.columnTitle[3]}</h5>
 					</div>
 				</div>
 			</>

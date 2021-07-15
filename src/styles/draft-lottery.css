@@ -24,3 +24,15 @@
 .gold-icon {
 	color: gold;
 }
+
+.silver-icon {
+	color: silver;
+}
+
+.bronze-icon {
+	color: #cd7f32;
+}
+
+.start-button {
+	margin: 20px;
+}
